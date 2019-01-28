@@ -14,7 +14,7 @@ const styles = {
 }
 
 function NavBar(props) {
-  const { classes } = props;
+  const { classes, score, topScore } = props;
   return (
       <div className={classes.root}>
         <AppBar position="fixed">
@@ -23,7 +23,7 @@ function NavBar(props) {
               <tr style={{verticalAlign: 'middle'}}>
                 <td width="33%" className="mui--appbar-height" style={{textAlign: 'left', fontSize: "36px"}}>Click Game</td>
                 <td width="33%" className="mui--appbar-height" style={{textAlign: 'center', fontSize: "24px"}}>Click A Picture To Begin</td>
-                <td width="33%" className="mui--appbar-height" style={{textAlign: 'right', fontSize: "24px"}}>Score: 0 | Top Score: 0</td>
+                <td width="33%" className="mui--appbar-height" style={{textAlign: 'right', fontSize: "24px"}}>Score: {score} | Top Score: {topScore}</td>
               </tr>
             </tbody>
           </table>
