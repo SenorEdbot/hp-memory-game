@@ -4,11 +4,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  flex: {
-    flex: 1,
+  footer: {
+    backgroundColor: "#bdbdbd"
   }
 }
 
@@ -16,12 +13,12 @@ const styles = {
 function Footer(props) {
   const { classes } = props
   return (
-    <div className={classes.root}>
+    <div className={classes.footer}>
       <Toolbar position="fixed">
         <table width="100%">
           <tbody>
-            <tr style={{verticalAlign: 'middle'}}>
-              <td width="33%" className="mui--toolbar-height" style={{textAlign: 'left', fontSize: "18px"}}>Clicky Game!</td>
+            <tr style={{verticalAlign: 'bottom'}}>
+              <td width="33%" className="mui--toolbar-height" style={{textAlign: 'left', fontSize: "14px"}}>Created by Eddie Franco</td>
             </tr>
           </tbody>
         </table>
