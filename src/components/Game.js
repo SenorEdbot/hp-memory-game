@@ -34,81 +34,17 @@ const styles = theme => ({
   }
 });
 
-const numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-const gameData = [
-  {
-    img: harry,
-    name: "Harry Potter",
-    alt: "Harry Potter",
-    id: 1
-  },
-  {
-    img: dobby,
-    name: "Dobby",
-    alt: "Dobby",
-    id: 2
-  },
-  {
-    img: ginny,
-    name: "Ginny Weasley",
-    alt: "Ginny Weasley",
-    id: 3
-  },
-  {
-    img: hagrid,
-    name: "Rubeus Hagrid",
-    alt: "Rubeus Hagrid",
-    id: 4
-  },
-  {
-    img: hermione,
-    name: "Hermione Granger",
-    alt: "Hermione Granger",
-    id: 5
-  },
-  {
-    img: luna,
-    name: "Luna Lovegood",
-    alt: "Luna Lovegood",
-    id: 6
-  },
-  {
-    img: voldemort,
-    name: "Voldemort",
-    alt: "Voldemort",
-    id: 7
-  },
-  {
-    img: mcgonagall,
-    name: "Minerva McGonagall",
-    alt: "Minerva McGonagall",
-    id: 8
-  },
-  {
-    img: ron,
-    name: "Ron Weasley",
-    alt: "Ron Weasley",
-    id: 9
-  },
-  {
-    img: snape,
-    name: "Severus Snape",
-    alt: "Severus Snape",
-    id: 10
-  },
-  {
-    img: draco,
-    name: "Draco Malfoy",
-    alt: "Draco Malfoy",
-    id: 11
-  },
-  {
-    img: neville,
-    name: "Neville Longbottom",
-    alt: "Neville Longbottom",
-    id: 12
+function shuffleArray(array) {
+  let i = array.length - 1;
+  for (; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
-]
+  return array;
+}
+
 class Game extends Component {
   state = {
     haveBeenClicked: [],
@@ -188,39 +124,29 @@ class Game extends Component {
     ]
   }
 
-  shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-      [array[i], array[j]] = [array[j], array[i]]; // swap elements
-    }
-  }
-
   handleClick(id) {
     if(this.state.haveBeenClicked.includes(id)) {
-      console.log('user lost')
       this.props.resetScore()
       this.setState({ haveBeenClicked: [] })
-      //TODO: Randomize the pictures after losing
+      alert("Oh No! Please try again")
     } else {
       this.setState(prevState=>({
         haveBeenClicked: [...prevState.haveBeenClicked, id]
       }),() => {
         this.props.handleIncrement()
-        console.log(this.state.haveBeenClicked)
       })
-      //TODO: replace console log with the function to shuffle the game again
     }
   }
 
   render() {
     const { classes } = this.props;
-    const { gameData } = this.state;
+    const ShuffledGameData = shuffleArray(this.state.gameData);
     
     return (
       <div className={classes.root}>
         <GridList cellHeight={160} className={classes.gridList} cols={4}>
-          {gameData.map(game => (
-            <GridListTile key={game.id} id={game.id} cols={game.cols || 1}>
+          {ShuffledGameData.map((game, index) => (
+            <GridListTile key={index} id={game.id} cols={game.cols || 1}>
               <img src={game.img} alt={game.alt} onClick={() => this.handleClick(game.id)} />
             </GridListTile>
           ))}

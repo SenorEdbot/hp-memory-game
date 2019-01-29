@@ -5,10 +5,6 @@ import NavBar from './components/NavBar'
 import Game from './components/Game'
 import Footer from './components/Footer'
 
-// const characters = [harry, dobby, ginny, hagrid, hermione, luna, neville, mcgonagall, ron, snape, draco, voldemort]
-const initialState = {
-  score: 0
-}
 class App extends Component {
   constructor(props, context){
     super(props, context);
